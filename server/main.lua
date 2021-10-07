@@ -91,12 +91,12 @@ function CheckOwner(plate, identifier)
     return retval
 end
 
-QBCore.Functions.CreateUseableItem("lockpick", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)
-    TriggerClientEvent("lockpicks:UseLockpick", source, false)
-end)
+--QBCore.Functions.CreateUseableItem("lockpick", function(source, item)
+    --local Player = QBCore.Functions.GetPlayer(source)                         << required items to lock pick if wanted to set to a item
+    --TriggerClientEvent("lockpicks:UseLockpick", source, false)
+--end)
 
-QBCore.Functions.CreateUseableItem("advancedlockpick", function(source, item)
-    local Player = QBCore.Functions.GetPlayer(source)
-    TriggerClientEvent("lockpicks:UseLockpick", source, true)
-end)
+--QBCore.Functions.CreateUseableItem("advancedlockpick", function(source, item)
+    --local Player = QBCore.Functions.GetPlayer(source)                         << required items to lock pick if wanted to set to a item
+    --TriggerClientEvent("lockpicks:UseLockpick", source, true)
+--end)
