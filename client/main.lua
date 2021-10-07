@@ -51,12 +51,12 @@ Citizen.CreateThread(function()
             local veh = GetVehiclePedIsIn(PlayerPedId(), false)
             SetVehicleEngineOn(veh, false, false, true)
             local requiredItems = {
-                [1] = {name = QBCore.Shared.Items["lockpick"]["name"], image = QBCore.Shared.Items["lockpick"]["image"]},
-                [2] = {name = QBCore.Shared.Items["advancedlockpick"]["name"], image = QBCore.Shared.Items["advancedlockpick"]["image"]},
+                --[1] = {name = QBCore.Shared.Items["lockpick"]["name"], image = QBCore.Shared.Items["lockpick"]["image"]},                     << required items to lock pick if wanted to set to a item
+                --[2] = {name = QBCore.Shared.Items["advancedlockpick"]["name"], image = QBCore.Shared.Items["advancedlockpick"]["image"]},     << required items to lock pick if wanted to set to a item
             }
 
             local veh = GetVehiclePedIsIn(PlayerPedId(), false)
-            local vehpos = GetOffsetFromEntityInWorldCoords(veh, 0, 1.5, 0.5)
+            local vehpos = GetOffsetFromEntityInWorldCoords(veh, 0, 0, 0)
             QBCore.Functions.DrawText3D(vehpos.x, vehpos.y, vehpos.z, "~g~H~w~ - Hotwire")
             SetVehicleEngineOn(veh, false, false, true)
 
@@ -329,7 +329,7 @@ end
 function LockpickIgnition(isAdvanced)
     if not HasKey then 
         local vehicle = GetVehiclePedIsIn(PlayerPedId(), true)
-        IsHotwiring = true
+        IsHotwiring = false
         PoliceCall()
         local lockpickTime = math.random(6000, 9000)
         if isAdvanced then
@@ -591,12 +591,10 @@ AddEventHandler("robEntity", function(entityRobbed,veh)
             --TriggerEvent("traps:luck:ai")
 
             if veh ~= 0 and LastGive[veh] ~= true then
-                --TriggerEvent("notification","They handed you the keys!")
+                TriggerEvent("notification","They handed you the keys!")
                 local plate = GetVehicleNumberPlateText(veh, false)
                 local ped = PlayerPedId()
                 local pos = GetEntityCoords(ped)
-                --TriggerServerEvent("esx_addons_gcphone:startCall", "police", "Person robbery in progress. ", pos)
-                --TriggerServerEvent("cl-keys:giveKey",plate)
                 Citizen.Wait(7000)
                 QBCore.Functions.Notify( "Person gave you his keys!","success")
                 HasKey = true
